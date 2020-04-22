@@ -2,6 +2,8 @@
 #include <VirtualWire.h> // include the VirtualWire library
 #define Xpin A0 // Let the X axis be defined on analog pin 0
 #define Ypin A1 // Let the Y axis be defined on analog pin 1
+
+// Što je Ypina?
 #define Ypina A2
 
 int joyY =0;
@@ -17,6 +19,7 @@ void setup() {
 }
 
 void loop() {
+  // što ovjde čitaš? joyY je postavljen na 0. koji je to pin?
    joyVal = analogRead(joyY);
   joyVal = map(joyVal,0,1023,0,180);
 
@@ -24,6 +27,12 @@ void loop() {
   Y = analogRead(Ypin); // Let the analog read of Y axis be stored in a previouslt defined integer named Y
   X = map(X, 0, 1023, 0, 10); // Map the values of X axis from 0 to 1023, to 0 to 10
   Y = map(Y, 0, 1023, 0, 10); // Map the values of Y axis from 0 to 1023, to 0 to 10
+  
+  //možeš dodati kontrolu, da vidiš koje vrijednosti šalje joystick
+  Serial.println("--------------------");
+  Serial.print("X = ");Serial.println(X);
+  Serial.print("Y = ");Serial.println(Y);
+  
   if (X == 5 && Y == 5) { // if the value of X and Y axis is 5
     char *msg = "x"; // store the character 'x' in a char named msg
     digitalWrite(13, true); // light up the d13 LED to show transmission
