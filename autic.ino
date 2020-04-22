@@ -48,8 +48,10 @@ void loop()
         motor2.run(RELEASE);
       }
       if (message[i] == 'a') { // if message received is 'a', make the motors move left
-        motor1.run(FORWARD);
-        motor2.run(BACKWARD);
+        //verzija s servo motorom
+        motor1.run(RELEASE);
+        motor2.run(RELEASE);
+        servo1.write(120); // ili servo1.write(60); treba testirati i servo pa si označiti koje pozicije bi ti odgovarale.+
       }
       if (message[i] == 's') { // if the message received is 's' , make the motors move backwards
         motor1.run(BACKWARD);
@@ -59,6 +61,7 @@ void loop()
         motor1.run(BACKWARD);
         motor2.run(FORWARD);
       }
+      // onda dodaš još if-ova, ovisno o tome koliko stanja želiš imati (ja preporučam minimalno onih 9 koje sam ti prikazao u pdf-u)
 
     }
     Serial.println();
