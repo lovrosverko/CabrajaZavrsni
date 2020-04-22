@@ -24,6 +24,10 @@ void setup()
 }
 void loop()
 {
+  
+  // ovdje postavljaš servo na joyVal koji je samo deklariran, ali nema vrijednost. tj. ima NULL vrijednost
+  // možda da to staviš na kraju loop() funkcije?
+  // ili da na početku definiraš da je joyVal = 90?
   servo1.write(joyVal);
 
 
@@ -31,6 +35,7 @@ void loop()
   byte messageLength = VW_MAX_MESSAGE_LEN;
   if (vw_get_message(message, &messageLength)) // if the receiver gets a message
   {
+    // ovaj kod je dobar za autić s dva kotača, autić s četiri kotača se neće dobro okretati
     for (int i = 0; i < messageLength; i++)
     {
       Serial.write(message[i]); // print in the received message in the serial monitor
@@ -58,4 +63,5 @@ void loop()
     }
     Serial.println();
   }
-} // if the movements of the motors don't fit ypur requirement, please feel free to change them
+}
+// joystick ima više pozicija od samo četiri, zar ne? kada bi ga npr. gurnuo naprijed i desno, koju naredbu bi slao?
